@@ -1,1 +1,140 @@
-/* You can add global styles to this file, and also import other style files */
+@use "sass:math";
+
+$spacing: 8px;
+$input-width: 100%;
+
+.json {
+  min-height: $spacing * 4;
+  white-space: pre-wrap;
+  word-spacing: $spacing;
+  background: darkslateblue;
+  color: antiquewhite;
+  border-radius: $spacing;
+  padding: $spacing;
+  margin: 0 0 $spacing;
+}
+
+* {
+  box-sizing: border-box;
+}
+label {
+  display: block;
+  margin: 0 0 $spacing;
+}
+input {
+  display: block;
+  padding: $spacing #{$spacing * 2};
+  margin: 0 0 $spacing;
+  height: $spacing * 6;
+  border-width: math.div($spacing, 4);
+  border-radius: $spacing;
+  border-color: grey;
+  width: $input-width;
+}
+input[type="checkbox"], input[type="radio"] {
+  margin: 0 0 $spacing;
+  height: $spacing * 4;
+  width: $spacing * 4;
+}
+input[type="color"] {
+  padding: math.div($spacing, 2);
+  height: $spacing * 6;
+  width: $spacing * 6;
+}
+input[type="range"] {
+  height: $spacing * 2;
+  width: $input-width;
+}
+input[type="datetime-local"] {
+  width: $input-width;
+}
+button {
+  padding: $spacing #{$spacing * 2};
+  height: $spacing * 6;
+  margin: 0 0 $spacing;
+  border-radius: $spacing;
+}
+
+html, body { height: 100%; }
+body {
+  margin: $spacing;
+  background: whitesmoke;
+}
+
+body, input, button {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+}
+button {
+  line-height: 0;
+}
+
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing;
+  align-items: center;
+
+  label, input, button {
+    margin-bottom: 0;
+  }
+  margin: 0 0 $spacing;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: $spacing;
+
+  .section {
+    flex-grow: 2;
+    width: 50%;
+  }
+}
+
+a, button {
+  cursor: pointer;
+}
+
+button {
+  background: cornflowerblue;
+  color: white;
+}
+button:hover {
+  background: lighten(cornflowerblue, 5);
+}
+button:active {
+  background: darken(cornflowerblue, 10);
+}
+
+.border {
+    background: grey;
+    height: 2px;
+    margin: $spacing 0;
+}
+//
+$wait-time: 400ms;
+$fade-time: 500ms;
+
+.fade {
+    animation: wait #{$wait-time}, fadeIn #{$fade-time} #{$wait-time};
+    mat-spinner, mat-progress-bar {
+      animation: wait #{$wait-time};//, fadeIn #{$fade-time} #{$wait-time};
+    }
+}
+
+@keyframes wait {
+    0% {opacity:0;}
+    100% {opacity:0;}
+}
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+.loading {
+    pointer-events: none;
+    user-select: none;
+}
